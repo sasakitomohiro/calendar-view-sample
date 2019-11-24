@@ -1,10 +1,12 @@
 package monster.sasakisan.calendar_view_sample
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import com.kizitonwose.calendarview.model.CalendarDay
+import androidx.recyclerview.widget.RecyclerView
+import com.kizitonwose.calendarview.model.*
 import com.kizitonwose.calendarview.ui.DayBinder
 import monster.sasakisan.calendar_view_sample.databinding.ActivityMainBinding
 import org.threeten.bp.YearMonth
@@ -31,6 +33,11 @@ class MainActivity : AppCompatActivity() {
 
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.calendarDayText.text = day.date.dayOfMonth.toString()
+                if (day.owner == DayOwner.THIS_MONTH) {
+                    container.calendarDayText.setTextColor(Color.WHITE)
+                } else {
+                    container.calendarDayText.setTextColor(Color.GRAY)
+                }
             }
         }
     }
