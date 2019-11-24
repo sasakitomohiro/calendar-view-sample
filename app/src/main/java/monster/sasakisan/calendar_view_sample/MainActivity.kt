@@ -2,8 +2,14 @@ package monster.sasakisan.calendar_view_sample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
+import com.kizitonwose.calendarview.model.CalendarDay
+import com.kizitonwose.calendarview.ui.DayBinder
 import monster.sasakisan.calendar_view_sample.databinding.ActivityMainBinding
+import org.threeten.bp.YearMonth
+import org.threeten.bp.temporal.WeekFields
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
@@ -13,6 +19,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.calendarView
+        binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
+            override fun bind(container: DayViewContainer, day: CalendarDay) {
+                container.textView.text = day.date.dayOfMonth.toString()
+            }
+
+            override fun create(view: View): DayViewContainer = DayViewContainer(view)
+        }
+
+        val currentMonth = YearMonth.now()
+        val firstMonth = currentMonth.minusMonths(10)
+        val lastMonth = currentMonth.plusMonths(10)
+        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+        binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
+        binding.calendarView.scrollToMonth(currentMonth)
     }
 }
