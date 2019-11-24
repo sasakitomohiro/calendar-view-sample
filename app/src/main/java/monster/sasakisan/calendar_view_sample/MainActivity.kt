@@ -19,19 +19,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
-            override fun bind(container: DayViewContainer, day: CalendarDay) {
-                container.textView.text = day.date.dayOfMonth.toString()
-            }
-
-            override fun create(view: View): DayViewContainer = DayViewContainer(view)
-        }
-
         val currentMonth = YearMonth.now()
         val firstMonth = currentMonth.minusMonths(10)
         val lastMonth = currentMonth.plusMonths(10)
         val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+
         binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
         binding.calendarView.scrollToMonth(currentMonth)
+        binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
+            override fun create(view: View): DayViewContainer = DayViewContainer(view)
+
+            override fun bind(container: DayViewContainer, day: CalendarDay) {
+                container.textView.text = day.date.dayOfMonth.toString()
+            }
+        }
     }
 }
