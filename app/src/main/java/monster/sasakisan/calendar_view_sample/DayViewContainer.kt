@@ -1,9 +1,11 @@
 package monster.sasakisan.calendar_view_sample
 
 import android.view.View
+import android.widget.TextView
 import com.kizitonwose.calendarview.ui.ViewContainer
-import kotlinx.android.synthetic.main.view_day_item.view.*
+import monster.sasakisan.calendar_view_sample.databinding.ViewDayItemBinding
 
 class DayViewContainer(view: View) : ViewContainer(view) {
-    val textView = view.calendar_day_text
+    private val binding = ViewDayItemBinding.bind(view)
+    val calendarDayText: TextView = binding.calendarDayText
 }

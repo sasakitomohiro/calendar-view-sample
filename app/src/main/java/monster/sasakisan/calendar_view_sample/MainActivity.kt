@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             override fun create(view: View): DayViewContainer = DayViewContainer(view)
 
             override fun bind(container: DayViewContainer, day: CalendarDay) {
-                container.textView.text = day.date.dayOfMonth.toString()
+                container.calendarDayText.text = day.date.dayOfMonth.toString()
             }
         }
     }
