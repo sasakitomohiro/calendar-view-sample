@@ -1,12 +1,12 @@
 package monster.sasakisan.calendar_view_sample
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.kizitonwose.calendarview.model.*
+import com.kizitonwose.calendarview.model.CalendarDay
+import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import monster.sasakisan.calendar_view_sample.databinding.ActivityMainBinding
 import org.threeten.bp.YearMonth
